@@ -1,0 +1,19 @@
+As of 12-15-15:
+
+PreCal
+	S1: 100.98
+	Final: 61.08
+
+Band
+	T1: 102.56
+	T2: 99.88
+	Final: 60.12
+
+Biology
+	T1: 97.96
+	T2: 104.92
+	Final: 59.24
+
+CAPS
+	S1: 105.03
+	Final: 44.88

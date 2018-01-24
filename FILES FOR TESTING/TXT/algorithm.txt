@@ -1,0 +1,27 @@
+// Honor Pledge:
+//
+// I pledge that I have neither given nor
+// received any help on this assignment.
+//
+// sopferma
+
+main method
+	prompt user to enter a word, store in "word"
+	call reverse method
+	print output message
+	ask to continue
+	get input, store in "keepGoing"
+	if keepGoing is N
+		print goodbye message and terminate
+	else
+		loop
+
+
+reverse method
+	if word length is 1
+		keep place of word
+	if word length is 2
+		switch first and last letter
+	otherwise
+		switch first and last letter
+		call reversedWord with rest of word
