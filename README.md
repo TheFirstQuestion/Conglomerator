@@ -1,10 +1,11 @@
 # Conglomerator
 
-`python3 app.py`
+`make clean && make run`
 
 ## Dependencies
 
-* Flask
+* Flask: `sudo pip3 install flask`
+* Flask-Dropzone: `sudo pip3 install flask-dropzone`
 
 ### For file conversions:
 

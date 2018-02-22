@@ -1,20 +1,11 @@
 {% include "header.html" %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/index-style.css') }}">
 
+<h1>home</h1>
 
-<div class="container">
-    <div class="jumbotron">
-        <h1>Hello</h1>
-    </div>
-
-    <form action="/uploader" method="POST" enctype="multipart/form-data">
-        <label class="btn btn-primary">Browse<input type="file" name="files" hidden multiple /></label>
-        <input class="btn btn-submit" type="submit"/>
-     </form>
-
-
-</div>
-
-
+<ul>
+    {% for file in data %}
+        <li>{{ file[1] }}</li>
+    {% endfor %}
+</ul>
 
 {% include "footer.html" %}
