@@ -1,10 +1,12 @@
 {% include "header.html" %}
 
-<h1>home</h1>
+<h1>Files</h1>
+<!-- TODO: allow customization, settings -->
+
 
 <ul>
     {% for file in data %}
-        <li>{{ file[1] }}</li>
+        <li><a href="{{ url_for('viewFile', file=file[2]) }}">{{ file[1] }}</a></li>
     {% endfor %}
 </ul>
 

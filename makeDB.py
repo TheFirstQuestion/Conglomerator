@@ -3,14 +3,16 @@ import sqlite3
 conn = sqlite3.connect('conglomerator.db')
 
 # TODO:
-# add columns: originalName, systemName, parsed file extension, metadata
+# add metadata
 
 conn.execute(
     """
     CREATE TABLE files (
-    id          INTEGER     PRIMARY KEY,
-    name        VARCHAR     NOT NULL,
-    type        VARCHAR     NOT NULL
+    id              INTEGER     PRIMARY KEY,
+    originalName    VARCHAR     NOT NULL,
+    systemName      VARCHAR     NOT NULL,
+    systemType      VARCHAR     NOT NULL,
+    parsedType      VARCHAR     NOT NULL
     );
     """
 )
