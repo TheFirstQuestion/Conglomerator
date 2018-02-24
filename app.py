@@ -7,6 +7,7 @@ from subprocess import call
 
 
 app = Flask(__name__)
+myWD = "/home/sophie/GitHub/Conglomerator/files"
 
 
 ########################## Dropzone Config ##################################
@@ -56,25 +57,36 @@ def upload_file():
         for key, f in request.files.items():
             if key.startswith('file'):
                 newName = fileToDB(f)
-                f.save(os.path.join("./files/", newName))
+                f.save(os.path.join(myWD, newName))
     return "something"
 
 def convert(myFile):
     extension = myFile[4]
     name = myFile[2]
     filename = "{}{}".format(name, extension)
-    os.chdir("/home/sophie/GitHub/Conglomerator/files")
+    os.chdir(myWD)
 
+    # PDF
     if (extension == ".pdf"):
-        print("PDF")
         call(["sudo", "pdf2htmlEX", filename])
+    # Markdown
     elif (extension == ".md"):
-        print("markdown")
         call(["grip", filename, "--export"])
+    # Text
+    elif (extension == ".txt"):
+        contents = open("{}/{}".format(myWD, filename),"r")
+        with open("{}.html".format(name), "w") as e:
+            for lines in contents.readlines():
+                e.write("<pre>" + lines + "</pre>\n")
+    else:
+        # Primarily DOCX and DOC
+        call(["libreoffice", "--headless", "--convert-to", "html", filename])
 
-@app.route('/maps/map.html')
-def showFile():
-    return send_file('/home/sophie/GitHub/Conglomerator/files/1c8b3bfb1ebf4887bff8f80db1015174.html')
+
+@app.route('/showFile/<fileCode>')
+def showFile(fileCode):
+    filePath = "{}/{}.html".format(myWD, fileCode)
+    return send_file(filePath)
 
 
 
@@ -95,7 +107,7 @@ def fileToDB(f):
     # Generate random filename
     newName = uuid.uuid4().hex
     extension = os.path.splitext(fullName)[1]
-    # TODO: check for duplicates
+    # TODO: check for duplicates, clean up input (lowercase, etc.)
     conn.execute('INSERT INTO `files` (`originalName`, `parsedType`, `systemName`, `systemType`) VALUES (?, ?, ?, ?);', [name, extension, newName, fType])
     conn.commit()
     # Return random name with same file extension

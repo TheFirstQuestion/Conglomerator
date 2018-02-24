@@ -15,14 +15,10 @@
         alias pdf2htmlEX='sudo docker run -ti --rm -v `pwd`:/pdf bwits/pdf2htmlex pdf2htmlEX'
 * Test: `pdf2htmlEX "test.pdf"`
 
-#### [mammoth](https://github.com/mwilliamson/python-mammoth) for DOCX
-* `sudo pip3 install mammoth`
-* `mammoth test.docx output.html`
-
 #### [grip](https://github.com/joeyespo/grip) for Markdown
 * `sudo pip3 install grip`
-* `grip test.md --export`
+* Test: `grip test.md --export`
 
-#### [LibreOffice](https://www.libreoffice.org/) for DOC
+#### [LibreOffice](https://www.libreoffice.org/) for DOC and DOCX
 * `sudo apt-get install libreoffice --no-install-recommends` (see [here](https://askubuntu.com/questions/519082/how-to-install-libre-office-without-gui))
-* `libreoffice --headless --convert-to html test.doc`
+* Test: `libreoffice --headless --convert-to html test.doc`
