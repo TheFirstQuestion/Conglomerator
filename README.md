@@ -10,9 +10,9 @@
 ### For file conversions:
 
 #### [pdf2htmlEX](https://github.com/coolwanglu/pdf2htmlEX) for PDF
-* Install [Docker](https://www.docker.com/community-edition#/download)
+* Install [Docker](https://www.docker.com/community-edition#/download) and [allow running without `sudo`](https://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo)
 * Create a local alias for docker command: add the following to `~/.bash_aliases`
-        alias pdf2htmlEX='sudo docker run -ti --rm -v `pwd`:/pdf bwits/pdf2htmlex pdf2htmlEX'
+        alias pdf2htmlEX='docker run -ti --rm -v "${PWD}":/pdf bwits/pdf2htmlex pdf2htmlEX'
 * Test: `pdf2htmlEX "test.pdf"`
 
 #### [grip](https://github.com/joeyespo/grip) for Markdown

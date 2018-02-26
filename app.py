@@ -1,7 +1,7 @@
 from flask import *
 from flask_dropzone import Dropzone
 import sqlite3
-import os
+import subprocess
 import uuid
 from subprocess import call
 
@@ -64,11 +64,16 @@ def convert(myFile):
     extension = myFile[4]
     name = myFile[2]
     filename = "{}{}".format(name, extension)
-    os.chdir(myWD)
+    #os.chdir(myWD)
 
     # PDF
     if (extension == ".pdf"):
-        call(["sudo", "pdf2htmlEX", filename])
+        cmd = ['docker', 'run', '-ti', '--rm', '-v', '/homt/sophie/GitHub/Conglomerator/files:/pdf'.format(myWD), 'bwits/pdf2htmlex' 'pdf2htmlEX', filename]
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+        for line in p.stdout:
+            print(line)
+        p.wait()
+        print(p.returncode)
     # Markdown
     elif (extension == ".md"):
         call(["grip", filename, "--export"])
